@@ -31,11 +31,10 @@ namespace OrganizerApp1.Pages
                     {
                         await _databaseService.DeleteReportAsync(report);
 
-                        // Уведомляем предыдущую страницу об удалении отчета
-                        MessagingCenter.Send(this, "ReportDeleted", _reportId);
-
                         await DisplayAlert("Успех", "Отчёт успешно удалён.", "OK");
-                        await Navigation.PopAsync();
+
+                        // Переход на главную страницу (MainPage.xaml)
+                        await Navigation.PopToRootAsync();  // Это приведет к возврату на главную страницу
                     }
                 }
                 catch (Exception ex)

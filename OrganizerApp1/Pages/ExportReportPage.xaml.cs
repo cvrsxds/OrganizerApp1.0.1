@@ -22,17 +22,6 @@ namespace OrganizerApp1.Pages
             Events = new List<Event>();
             LoadReports();
             LoadPastEvents();
-            MessagingCenter.Subscribe<ReportDetailsPage, int>(this, "ReportDeleted", (sender, reportId) =>
-            {
-                // Находим и удаляем отчет из списка
-                var reportToRemove = Reports.FirstOrDefault(r => r.Id == reportId);
-                if (reportToRemove != null)
-                {
-                    Reports.Remove(reportToRemove);
-                    ReportsListView.ItemsSource = null;
-                    ReportsListView.ItemsSource = Reports;
-                }
-            });
         }
 
         private async void LoadPastEvents()
@@ -111,12 +100,6 @@ namespace OrganizerApp1.Pages
                     await DisplayAlert("Ошибка", $"Не удалось открыть отчёт: {ex.Message}", "OK");
                 }
             }
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            MessagingCenter.Unsubscribe<ReportDetailsPage, int>(this, "ReportDeleted");
         }
     }
 }

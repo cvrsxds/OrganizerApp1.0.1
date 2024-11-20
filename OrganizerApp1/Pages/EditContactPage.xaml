@@ -6,8 +6,8 @@
     <VerticalStackLayout Padding="20" Spacing="15">
         <Label Text="Изменить контакт" FontSize="24" HorizontalOptions="Center" />
 
-        <Entry x:Name="NameEntry" Placeholder="Имя" TextChanged="OnNameEntryTextChanged"/>
-        <Entry x:Name="PhoneEntry" Placeholder="Номер телефона" Keyboard="Telephone" TextChanged="OnPhoneEntryTextChanged" />
+        <Entry x:Name="NameEntry" Placeholder="Имя*" TextChanged="OnNameEntryTextChanged"/>
+        <Entry x:Name="PhoneEntry" Placeholder="Номер телефона*" Keyboard="Telephone" TextChanged="OnPhoneEntryTextChanged" />
         <Entry x:Name="EmailEntry" Placeholder="Электронная почта" Keyboard="Email" />
 
         <Button Text="Сохранить" 

@@ -65,15 +65,17 @@ namespace OrganizerApp1
         // Метод для обновления мероприятия
         public async Task UpdateEventAsync(Event updatedEvent)
         {
-            await _databaseService.SaveEventAsync(updatedEvent); 
+            await _databaseService.SaveEventAsync(updatedEvent);
 
-            int index = Events.IndexOf(updatedEvent);
-            if (index >= 0)
+            var existingEvent = Events.FirstOrDefault(evt => evt.Id == updatedEvent.Id);
+            if (existingEvent != null)
             {
-                Events[index] = updatedEvent; 
+                int index = Events.IndexOf(existingEvent);
+                Events[index] = updatedEvent;
             }
 
             var sortedEvents = Events.OrderBy(evt => evt.Date).ToList();
+            Events.Clear();
             foreach (var evt in sortedEvents)
             {
                 Events.Add(evt);
