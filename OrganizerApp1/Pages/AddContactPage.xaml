@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrganizerApp1.Pages.AddContactPage"
+             Title="Добавить контакт">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Добавить контакт" FontSize="24" HorizontalOptions="Center" />
+
+        <Entry x:Name="NameEntry" Placeholder="Имя" TextChanged="OnNameEntryTextChanged"/>
+        <Entry x:Name="PhoneEntry" Placeholder="Номер телефона" Keyboard="Telephone" TextChanged="OnPhoneEntryTextChanged" />
+        <Entry x:Name="EmailEntry" Placeholder="Электронная почта" Keyboard="Email" />
+
+        <Button Text="Сохранить" 
+                Clicked="OnSaveContactClicked" 
+                TextColor="Black"
+                BorderColor="Black"
+                BackgroundColor="LightGrey"/>
+    </VerticalStackLayout>
+</ContentPage>

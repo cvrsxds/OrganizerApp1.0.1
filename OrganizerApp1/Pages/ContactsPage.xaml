@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrganizerApp1.Pages.ContactsPage"
+             Title="Контакты">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Style.Triggers>
+                    <DataTrigger TargetType="Frame" Binding="{Binding Source={RelativeSource Self}, Path=IsSelected}" Value="True">
+                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <Label Text="Список контактов" FontSize="24" HorizontalOptions="Center" VerticalOptions="Start" />
+
+                <ListView x:Name="ContactsListView"
+                          ItemsSource="{Binding Contacts}"
+                          SelectedItem="{Binding SelectedContact, Mode=TwoWay}" 
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="10">
+                                    <Label Text="{Binding Name}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="18" 
+                                           LineBreakMode="WordWrap" />
+                                    <Label Text="{Binding PhoneNumber}" 
+                                           FontSize="14" />
+                                    <Label Text="{Binding Email}" 
+                                           FontSize="14" 
+                                           TextColor="Gray"
+                                           LineBreakMode="WordWrap"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Padding="20,0,20,20" Spacing="10">
+            <Button Text="Добавить контакт" 
+                    Clicked="OnAddContactClicked" 
+                    HorizontalOptions="Fill"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BackgroundColor="LightGrey" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Text="Изменить" 
+                        Clicked="OnEditContactClicked" 
+                        HorizontalOptions="Fill" 
+                        Grid.Column="0"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BackgroundColor="LightGrey"/>
+                <Button Text="Удалить" 
+                        Clicked="OnDeleteContactClicked" 
+                        HorizontalOptions="Fill" 
+                        Grid.Column="1"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BackgroundColor="LightGrey"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

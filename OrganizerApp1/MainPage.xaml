@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrganizerApp1.MainPage">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout 
+                Padding="20,0" 
+                Spacing="15">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Button Text="Контакты" 
+                            Clicked="OnContactsPageClicked" 
+                            HorizontalOptions="FillAndExpand" 
+                            Grid.Column="0"
+                            TextColor="Black"
+                            BorderColor="Black"
+                            BackgroundColor="LightGrey"/>
+                    <Button Text="Отчёты" 
+                            Clicked="OnExportReportClicked"
+                            HorizontalOptions="FillAndExpand" 
+                            Grid.Column="1"
+                            TextColor="Black"
+                            BorderColor="Black"
+                            BackgroundColor="LightGrey"/>
+                </Grid>
+                <Label Text="Список мероприятий" FontSize="24" HorizontalOptions="Center" VerticalOptions="Start" />
+                <ListView x:Name="EventsListView" 
+                          ItemsSource="{Binding Events}"
+                          SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" 
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10" Spacing="1">
+                                    <StackLayout Orientation="Vertical" Spacing="3" HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Name}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold" 
+                                               LineBreakMode="WordWrap"
+                                               VerticalOptions="Center" />
+                                        <Label Text="{Binding Date, StringFormat='{0:dd.MM.yyyy HH:mm}'}" 
+                                               FontSize="12" 
+                                               TextColor="White" 
+                                               VerticalOptions="Center" 
+                                               LineBreakMode="NoWrap" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <VerticalStackLayout Grid.Row="1" Padding="20,0,20,20" Spacing="10">
+            <Button Text="Добавить мероприятие" 
+                    Clicked="OnAddEventClicked" 
+                    HorizontalOptions="Fill"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BackgroundColor="LightGrey" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Text="Изменить" 
+                        Clicked="OnEditEventClicked" 
+                        HorizontalOptions="Fill" 
+                        Grid.Column="0"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BackgroundColor="LightGrey"/>
+                <Button Text="Удалить" 
+                        Clicked="OnDeleteEventClicked" 
+                        HorizontalOptions="Fill" 
+                        Grid.Column="1"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BackgroundColor="LightGrey"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
